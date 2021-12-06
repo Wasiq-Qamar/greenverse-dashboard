@@ -1,0 +1,32 @@
+/****************** key board**************** */
+.hidden {
+    display: none;
+  }
+  .simple-keyboard {
+    position: fixed;
+    z-index: 165000;
+    bottom: 0;
+    left: 0;
+    right:0;
+    margin-left: 0;
+    margin-right: auto;
+    max-width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+  }
+  .keyboard_input{
+    position: fixed;
+    z-index: 165000;
+    bottom: 230px;
+    left: 0;
+    right:0;
+    margin-left: 0;
+    margin-right: auto;
+    font-size: 14px;
+    max-width: 100vw;
+    border: 0.125vw solid rgba(0, 0, 0, 0.5);
+  }
+  @media only screen and (max-width: 501px){
+    .keyboard_input{
+      bottom: 140px;
+    }
+  }

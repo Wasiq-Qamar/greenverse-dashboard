@@ -1,0 +1,72 @@
+/* All alets messages css */
+.toast {
+    align-items: center;
+    border-radius: 3px;
+    top: 40%;
+    display: flex;
+    min-height: 50px;
+    max-height: 50px;
+    justify-content: space-between;
+    left: 40%;
+    padding: 0 20px;
+    position: fixed;
+    /* transform: translateX(-50%) translateY(150%); */
+    display: none;
+    transition: transform .35s ease;
+}
+.visible {
+/* transform: translateX(-50%) translateY(-50%); */
+    display: block;
+}
+.info {
+    background-color: #a0d3e8;
+    border-color: #74bfdd;
+    top: 30%;
+} 
+.success {
+    background-color: #43ac6a;
+    border-color: #3a945b;
+    top: 40%;
+}
+.warning {
+    background-color: #f04124;
+    border-color: #de2d0f;
+    top: 50%;
+}
+p {
+    color: #fff;
+    font-family: 'Noto Sans';
+    font-size: 14px;
+    white-space: nowrap;
+}
+@media only screen and (max-width: 805px) {
+    .info {
+        top: 35%;
+    } 
+    .success {
+        top: 40%;
+    }
+    .warning {
+        top: 45%;
+    }
+}
+@media only screen and (max-width: 501px)  {
+    .toast {
+        min-height: 40px;
+        max-height: 40px;
+        padding: 0 12px;
+        left:30%;
+    }
+    p{
+        font-size: 13px;
+    }
+    .info {
+        top: 25%;
+    }
+    .success {
+        top: 36%;
+    }
+    .warning {
+        top: 47%;
+    }
+}

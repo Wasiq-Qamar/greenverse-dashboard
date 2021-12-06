@@ -1,0 +1,53 @@
+.loginPage {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-bottom: 30vh;
+}
+.loginPage #main-content {
+  width: 100%;
+  margin-top: 0;
+  padding: 10px;
+  /* background-image: linear-gradient(90deg, #164778 0%, #05386b 100%); */
+}
+.loginPage #loginBox {
+  background-color: #f8f8f8;
+  border-radius: 5%;
+  padding: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.loginPage .gradient-bt {
+  width: 100%;
+  padding-top: 9px;
+  border-radius: 5px;
+  /* background-image: linear-gradient(90deg, #164778 0%, #05386b 100%); */
+}
+.loginPage .body {
+  border-radius: 0;
+}
+.loginPage button {
+  width: 100%;
+  height: 42px;
+  border-radius: 5px;
+  filter: drop-shadow(-3px 0 6.5px rgba(0, 0, 0, 0.21));
+  background-image: linear-gradient(90deg, #164778 0%, #05386b 100%);
+  color: #ffffff;
+  border-color: transparent;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loginPage button.guest {
+  background-color: #4cb07c !important;
+  background-image: initial !important;
+}
+.loginPage button svg {
+  font-size: 19px;
+}
+@media screen and (max-width: 810px) {
+  .loginPage {
+    padding-bottom: 40px;
+  }
+}

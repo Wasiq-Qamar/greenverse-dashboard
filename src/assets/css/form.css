@@ -1,0 +1,487 @@
+label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.light_version .radio-buttons,
+.light_version .form-control,
+.light_version .input-group-prepend .input-group-text,
+.light_version .MuiOutlinedInput-input,
+.light_version .input-group-append .input-group-text {
+    border-color: #e1e8ed;
+    background-color: #f2f2f2;
+    color: #757575;
+}
+
+.light_version .form-control:focus {
+    outline-color: #d2d2d3;
+}
+
+.light_version .MuiInputBase-root {
+    font-size: 14px;
+}
+
+.light_version .MuiInputBase-root:focus {
+    outline-color: #d2d2d3;
+}
+
+.light_version .fancy-radio input[type="radio"]+span i,
+.light_version .fancy-checkbox input[type="checkbox"]+span:before {
+    border-color: #e1e8ed;
+}
+
+.light_version .MuiIconButton-root,
+.MuiIconButton-root,
+.MuiFormLabel-root {
+    border-color: rgba(0, 0, 0, 0.25);
+    color: #848484;
+}
+
+.light_version .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(0, 0, 0, 0.25);
+}
+
+.light_version .MuiFormControl-fullWidth {
+    margin-top: 12px;
+}
+
+.light_version .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #bababa;
+}
+
+.light_version .MuiFormLabel-root.Mui-focused {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.light_version .WithStyles\(ForwardRef\(InputBase\)\)-input-2 {
+    background-color: #f2f2f2;
+    border-color: #e1e8ed;
+    color: #515356;
+}
+
+.light_version .MuiNativeSelect-select:not([multiple]) option,
+.MuiNativeSelect-select:not([multiple]) optgroup {
+    background-color: #f2f2f2;
+    color: #8b8e96;
+}
+
+.light_version .form-control option {
+    background-color: #f2f2f2;
+}
+
+.light_version option:focus {
+    outline-color: #f2f2f2;
+}
+
+.fancy-checkbox input[type="checkbox"] {
+    position: relative;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+    border: 2px solid #e1e8ed;
+}
+
+.fancy-checkbox input[type="checkbox"]:checked {
+    border-color: #17c2d7 !important;
+}
+
+.fancy-checkbox input[type="checkbox"]:checked::before {
+    border-color: #17c2d7 !important;
+    background-color: #17c2d7;
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    bottom: 50%;
+    left: 50%;
+    transition: all 0.1s;
+}
+
+.fancy-checkbox input[type="checkbox"]:checked::before,
+.fancy-checkbox input[type="checkbox"]:indeterminate::before {
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    left: 2px;
+}
+
+.form-control {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: transparent;
+    border-color: #393d42;
+    font-size: 14px;
+    color: #b3b6bb;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    color: #b3b6bb;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-clip: padding-box;
+    border: 1px solid #646464;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+button,
+input {
+    overflow: visible;
+}
+
+button:disabled {
+    cursor: initial !important;
+}
+
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled),
+button:not(:disabled) {
+    cursor: pointer;
+}
+
+.btn {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn>svg {
+    font-size: 16px;
+}
+
+.btn-info {
+    color: #fff !important;
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+}
+
+.btn-primary {
+    color: #fff !important;
+    background-image: linear-gradient(90deg, #2586dc 0%, #11b3de 100%) !important;
+    border-color: #2586dc !important;
+}
+
+.btn-danger {
+    color: #fff !important;
+    background-color: #e86969 !important;
+    border-color: #e86969 !important;
+}
+
+.btn-success {
+    color: #fff !important;
+    background-color: #4cb07c !important;
+    border-color: #4cb07c !important;
+}
+
+.btn-dark-blue {
+    color: #fff !important;
+    background-color: #3a4f60 !important;
+    border-color: #3a4f60 !important;
+}
+
+.btn-transparent {
+    color: #fff !important;
+    border-color: #ffffff !important;
+    background-color: transparent !important;
+}
+
+.light_version .btn-transparent {
+    color: rgb(12, 12, 12) !important;
+    border-color: #181717 !important;
+    background-color: transparent !important;
+}
+
+.btn {
+    font-size: 14px;
+    font-weight: 300;
+    display: inline-block;
+    font-weight: 400;
+    background-color: #f6f6f6;
+    border: 1px solid rgba(205, 205, 205, 0.55);
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 0.375rem 0.75rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    outline: none;
+}
+
+.width-100p,
+.btn-100p .btn {
+    width: 100%;
+}
+
+.fancy-checkbox,
+.fancy-checkbox label {
+    font-weight: normal;
+}
+
+.fancy-checkbox {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.light_version select.custom-select {
+    border-color: #e1e8ed;
+}
+
+select.custom-select {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    position: relative;
+    margin: 0;
+    background-color: transparent;
+    height: auto;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    text-transform: none;
+    word-wrap: normal;
+    font-family: inherit;
+    display: inline-block;
+    padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    vertical-align: middle;
+    border: 1px solid #393d42;
+    border-radius: 0.25rem;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='Grey' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 98%;
+    background-position-y: 5px;
+    border: 1px solid #dfdfdf;
+    border-radius: 2px;
+    margin-right: 2rem;
+    padding: 1rem;
+    padding-right: 2rem;
+}
+
+.form-control option {
+    background-color: #252525;
+}
+
+.form-control:focus {
+    outline-color: #252525;
+}
+
+
+/* ********** */
+
+.svg-15px svg,
+svg.svg-15px {
+    font-size: 15px;
+}
+
+.svg-16px svg,
+svg.svg-16px {
+    font-size: 16px;
+}
+
+.svg-17px svg,
+svg.svg-17px {
+    font-size: 17px;
+}
+
+.svg-18px svg,
+svg.svg-18px {
+    font-size: 18px;
+}
+
+.svg-19px svg,
+svg.svg-19px {
+    font-size: 19px;
+}
+
+.svg-20px svg,
+svg.svg-20px {
+    font-size: 20px;
+}
+
+.radio-buttons {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid #393d42;
+    /* width: 100%; */
+    height: auto;
+    border-radius: 9999px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding: 1px 2px;
+}
+
+.radio-buttons button {
+    border: 0px solid transparent;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+    font-size: 13px;
+    height: 20px;
+    width: 20px;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+}
+
+.radio-buttons button:disabled {
+    cursor: initial !important;
+}
+
+.enable-disable-checkcbox {
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 22px;
+    font-size: 0;
+}
+
+.enable-disable-checkcbox input {
+    display: none;
+    box-sizing: border-box;
+    padding: 0;
+    overflow: visible;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.enable-disable-checkcbox input:checked+.slider {
+    background-color: #17c2d7;
+}
+
+.enable-disable-checkcbox input:checked+.slider:before {
+    -webkit-transform: translateX(12px);
+    -ms-transform: translateX(12px);
+    transform: translateX(12px);
+}
+
+.enable-disable-checkcbox .slider.round {
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+}
+
+.enable-disable-checkcbox .slider {
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    background-color: rgba(23, 25, 28, 0.15);
+    border-radius: 0.1875rem;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.enable-disable-checkcbox .slider.round:before {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50% !important;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    background-color: #fff;
+    border-radius: 0.1875rem;
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 3px;
+}
+
+.MuiInputBase-root {
+    font-size: 14px;
+}
+
+.MuiOutlinedInput-notchedOutline,
+.MuiIconButton-root,
+.MuiFormLabel-root {
+    border-color: #929496;
+}
+
+.MuiInputLabel-outlined.MuiInputLabel-shrink {
+    transform: translate(12px, -6px) scale(0.75);
+}
+
+.MuiOutlinedInput-notchedOutline:hover {
+    border-color: #929496;
+}
+
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #929496;
+}
+
+.MuiFormControl-fullWidth {
+    margin-top: 12px;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #bababa;
+}
+
+.MuiFormLabel-root.Mui-focused {
+    color: #bababa;
+}
+
+.MuiOutlinedInput-input {
+    background-color: #282828;
+}
+
+
+/* .form-control:focus {
+  border-color: red;
+} */
+
+.MuiNativeSelect-select:not([multiple]) option,
+.MuiNativeSelect-select:not([multiple]) optgroup {
+    background-color: #313030;
+    color: #b3b6bb;
+}
+
+.MuiInputBase-input {
+    font-family: "Roboto" !important;
+    font-weight: 400;
+}

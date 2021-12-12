@@ -1,5 +1,6 @@
 import {
   deleteSessionCookie,
+  getSessionCookie,
   setSessionCookie,
 } from "../../../utility/session";
 import api from "../../api";
@@ -9,6 +10,8 @@ import {
   LOGIN,
   LOGOUT,
   REMOVE_AUTH_ALERT,
+  REMOVE_USER,
+  SET_USERS,
 } from "./actionTypes";
 
 /**
@@ -43,53 +46,100 @@ export const removeAuthAlerts = () => ({
   type: REMOVE_AUTH_ALERT,
 });
 
-export const createUser =
-  ({ username, password, userType }) =>
+export const setUsers = (payload) => ({
+  type: SET_USERS,
+  payload,
+});
+
+export const deleteUser = (payload) => ({
+  type: REMOVE_USER,
+  payload,
+});
+
+export const loginUser =
+  ({ email, password }, callback) =>
   (dispatch) => {
+    // console.log(email, password);
     api
-      .post("/user/create", { username, password, userType })
+      .post("/signin", { email, password })
       .then((res) => {
-        dispatch(setAuthSuccess("User Created Successfully"));
+        setSessionCookie("user", JSON.stringify(res.data));
+        setSessionCookie("token", res.data.token);
+        dispatch(setAuthSuccess("User Authenticated"));
+        dispatch(setLogin({ user: { email, password } }));
+        if (callback) callback();
       })
       .catch((err) => {
-        dispatch(setAuthError("Failed To Create User"));
         console.log(err);
+        dispatch(setAuthError("Authentication Failed"));
       });
   };
 
-export const loginUser =
-  ({ username, password }, callback) =>
+export const getUsers = () => (dispatch) => {
+  api
+    .get("/users")
+    .then((res) => {
+      dispatch(setUsers(res.data));
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch(setAuthError("Get Users Failed"));
+    });
+};
+
+export const removeUser =
+  ({ userId }) =>
   (dispatch) => {
-    // api
-    //   .post("/user/login", { username, password })
-    //   .then((res) => {
-    //     const { token, user } = res.data;
-    //     setSessionCookie("token", token);
-    //     setSessionCookie("user", JSON.stringify(user));
-    // dispatch(setAuthSuccess("User Authenticated"));
-    dispatch(setLogin({ user: { username, password } }));
-    //   callback();
-    // })
-    // .catch((err) => {
-    //   dispatch(setAuthError("Authentication Failed"));
-    //   console.log(err);
-    // });
+    api
+      .delete(`/user/${userId}`)
+      .then((res) => {
+        console.log(res.data);
+        dispatch(deleteUser(userId));
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch(setAuthError("Get Users Failed"));
+      });
+  };
+
+export const promoteUser =
+  ({ userId }) =>
+  (dispatch) => {
+    api
+      .patch(`/user/promote/${userId}`)
+      .then((res) => {
+        console.log(res.data);
+        dispatch(setUsers(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch(setAuthError("Get Users Failed"));
+      });
+  };
+
+export const demoteUser =
+  ({ userId }) =>
+  (dispatch) => {
+    api
+      .patch(`/user/demote/${userId}`)
+      .then((res) => {
+        console.log(res.data);
+        dispatch(setUsers(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch(setAuthError("Get Users Failed"));
+      });
   };
 
 export const logoutUser = () => async (dispatch) => {
-  console.log("logout");
-  // try {
-  // dispatch(removeAuthAlerts());
-  // await deleteSessionCookie("token");
-  // await deleteSessionCookie("user");
-  // await deleteSessionCookie("gatewaysActive");
-  // await deleteSessionCookie("gatewaysInactive");
-  //  console.log("TOKEN", getSessionCookie('token'))
-  //  console.log("gateways", getSessionCookie('gateways'))
-  dispatch(setLogout());
-  // } catch (err) {
-  // console.log(err);
-  // }
+  try {
+    deleteSessionCookie("user");
+    deleteSessionCookie("token");
+    dispatch(setLogout());
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const updatePassword =

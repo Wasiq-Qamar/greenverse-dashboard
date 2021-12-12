@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useLocation, Link } from "react-router-dom";
 import { logoutUser } from "../../store/auth/actions";
-import { setLoading } from "../../store/gateway/actions";
 import { FiUsers } from "react-icons/fi";
 import { AiOutlineBank } from "react-icons/ai";
 import { MdOutlineDashboard } from "react-icons/md";
@@ -12,13 +11,6 @@ import "./Sidebar.css";
 const Sidebar = (props) => {
   const { handleLogout } = props;
   const location = useLocation();
-
-  useEffect(() => {
-    if (location.pathname === "/app/manage") {
-      setLoading(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div id="sidebar">

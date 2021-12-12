@@ -1,7 +1,6 @@
-import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -9,89 +8,38 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Tooltip from "@mui/material/Tooltip";
-import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
-import IconButton from "@mui/material/IconButton";
-import Paper from "@mui/material/Paper";
-
+import PropTypes from "prop-types";
+import React, { useRef } from "react";
+import { connect } from "react-redux";
+import { useReactToPrint } from "react-to-print";
 import "./Account.css";
 
-const orders = [
-  {
-    id: "6s5d4f6s5d4fs6d5f4",
-    amount: "2500",
-    date: "07-11-2021",
-    status: "completed",
-  },
-  {
-    id: "64d6f46sd5f464g6df",
-    amount: "3000",
-    date: "20-11-2021",
-    status: "pending",
-  },
-  {
-    id: "54df65s4r6f54f5ff6",
-    amount: "1500",
-    date: "23-11-2021",
-    status: "completed",
-  },
-  {
-    id: "6sd4f6s5d4f6d5f4s9",
-    amount: "500",
-    date: "05-12-2021",
-    status: "pending",
-  },
-  {
-    id: "9s8d7f9s8d7f9sd87f",
-    amount: "3500",
-    date: "06-12-2021",
-    status: "completed",
-  },
-];
-
-const donations = [
-  {
-    id: "8asda8sd8as8da8asd",
-    amount: "7500",
-    date: "08-11-2021",
-    organization: "EDHI Trust",
-  },
-  {
-    id: "6as6d6as6d6asd6a6f",
-    amount: "8000",
-    date: "19-11-2021",
-    organization: "EDHI Trust",
-  },
-  {
-    id: "32v3a2f3a2fg3df23a",
-    amount: "6000",
-    date: "23-11-2021",
-    organization: "Saylani Trust",
-  },
-  {
-    id: "4as4fd44asd4f4a4sf",
-    amount: "5000",
-    date: "05-12-2021",
-    organization: "EDHI Trust",
-  },
-  {
-    id: "6s6dg6gbs6dfg6adfv",
-    amount: "3000",
-    date: "06-12-2021",
-    organization: "Saylani Trust",
-  },
-];
-
 const Account = (props) => {
+  const { orders, donations } = props;
+  const donationsRef = useRef();
+  const handlePrintDonations = useReactToPrint({
+    content: () => donationsRef.current,
+    documentTitle: "Donations Summary",
+    copyStyles: false,
+  });
+  const ordersRef = useRef();
+  const handlePrintOrders = useReactToPrint({
+    content: () => ordersRef.current,
+    documentTitle: "Orders Summary",
+    copyStyles: false,
+  });
+
   return (
-    <div id="user-container" className="d-flex flex-row col-12">
+    <div id="accounts-container" className="d-flex flex-row col-12">
       <Paper
-        sx={{ width: "40vw", overflow: "hidden", marginRight: 10 }}
-        className="col-5.5 p-3"
+        sx={{ width: "40vw", overflow: "hidden", marginRight: 1 }}
+        className="col-6 p-3"
+        ref={ordersRef}
       >
         <div className="d-flex flex-row">
           <h3 className="text-center col-11">Orders Summary</h3>
           <Tooltip title="Print pdf report" placement="top-end">
-            <IconButton>
+            <IconButton onClick={handlePrintOrders}>
               <PictureAsPdfIcon />
             </IconButton>
           </Tooltip>
@@ -124,10 +72,12 @@ const Account = (props) => {
                   <TableCell component="th" scope="row">
                     {index + 1}
                   </TableCell>
-                  <TableCell align="left">{order.id}</TableCell>
+                  <TableCell align="left">{order._id}</TableCell>
                   <TableCell align="left">{order.amount}</TableCell>
-                  <TableCell align="left">{order.status}</TableCell>
-                  <TableCell align="left">{order.date}</TableCell>
+                  <TableCell align="left">Pending</TableCell>
+                  <TableCell align="left">
+                    {order.orderDate.split("T")[0]}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -137,11 +87,15 @@ const Account = (props) => {
 
       {/* Donations Summary */}
 
-      <Paper sx={{ width: "40vw", overflow: "hidden" }} className="col-5.5 p-3">
+      <Paper
+        sx={{ width: "40vw", overflow: "hidden" }}
+        className="col-6 p-3"
+        ref={donationsRef}
+      >
         <div className="d-flex flex-row">
           <h3 className="text-center col-11">Donations Summary</h3>
           <Tooltip title="Print pdf report" placement="top-end">
-            <IconButton title="Print pdf report">
+            <IconButton title="Print pdf report" onClick={handlePrintDonations}>
               <PictureAsPdfIcon />
             </IconButton>
           </Tooltip>
@@ -174,10 +128,12 @@ const Account = (props) => {
                   <TableCell component="th" scope="row">
                     {index + 1}
                   </TableCell>
-                  <TableCell align="left">{donation.id}</TableCell>
+                  <TableCell align="left">{donation._id}</TableCell>
                   <TableCell align="left">{donation.amount}</TableCell>
                   <TableCell align="left">{donation.organization}</TableCell>
-                  <TableCell align="left">{donation.date}</TableCell>
+                  <TableCell align="left">
+                    {donation.donationDate.split("T")[0]}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -188,11 +144,17 @@ const Account = (props) => {
   );
 };
 
-Account.propTypes = {};
+Account.propTypes = {
+  orders: PropTypes.array.isRequired,
+  donations: PropTypes.array.isRequired,
+};
 
 Account.defaultProps = {};
 
-const mapStateToProps = ({ auth }) => ({});
+const mapStateToProps = ({ auth, order, donation }) => ({
+  orders: order.orders,
+  donations: donation.donations,
+});
 
 const mapDispatchToProps = (dispatch) => ({});
 

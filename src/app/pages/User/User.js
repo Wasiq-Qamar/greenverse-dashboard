@@ -17,26 +17,30 @@ import Paper from "@mui/material/Paper";
 
 import "./User.css";
 import avatar from "../../../assets/media/blank-avatar.png";
-import johnwick from "../../../assets/media/johnwick.jpg";
-import sherlock from "../../../assets/media/sherlock.jpg";
 
-function createData(username, title, tasks, donations, image) {
-  return { username, title, tasks, donations, image };
-}
-
-const rows = [
-  createData("Wasiq Qamar", "Manager", 6, 24, avatar),
-  createData("Sufyan Khan", "User", 9, 37, avatar),
-  createData("John Doe", "User", 8, 24, avatar),
-  createData("John Wick", "Manager", 4, 67, johnwick),
-  createData("Sherlock Holmes", "User", 5, 49, sherlock),
-  createData("Sherlock Holmes", "User", 5, 49, sherlock),
-  createData("Sherlock Holmes", "User", 5, 49, sherlock),
-  createData("Sherlock Holmes", "User", 5, 49, sherlock),
-  createData("Sherlock Holmes", "User", 5, 49, sherlock),
-];
+import {
+  getUsers,
+  removeUser,
+  promoteUser,
+  demoteUser,
+} from "../../store/auth/actions";
+import { getDonations } from "../../store/donation/actions";
 
 const User = (props) => {
+  const {
+    onGetUsers,
+    users,
+    onGetDonations,
+    donations,
+    onRemoveUser,
+    onPromoteUser,
+    onDemoteUser,
+  } = props;
+
+  useEffect(() => {
+    onGetUsers();
+    onGetDonations();
+  }, []);
   return (
     <div id="user-container">
       <Paper sx={{ width: "85vw", overflow: "hidden" }}>
@@ -53,7 +57,7 @@ const User = (props) => {
               <TableRow>
                 <TableCell style={{ width: 15 }}>ID</TableCell>
                 <TableCell align="left" style={{ width: 40 }}>
-                  User Name
+                  Email
                 </TableCell>
                 <TableCell align="right" style={{ width: 25 }}>
                   Title
@@ -73,7 +77,7 @@ const User = (props) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row, index) => (
+              {users.map((user, index) => (
                 <TableRow
                   hover
                   key={index}
@@ -83,35 +87,52 @@ const User = (props) => {
                     {index + 1}
                   </TableCell>
                   <TableCell align="left" style={{ width: 40 }}>
-                    {row.username}
+                    {user.email}
                   </TableCell>
                   <TableCell align="right" style={{ width: 25 }}>
-                    {row.title}
+                    {user.userType}
                   </TableCell>
                   <TableCell align="right" style={{ width: 15 }}>
-                    {row.tasks}
+                    {user.tasks.length}
                   </TableCell>
                   <TableCell align="right" style={{ width: 15 }}>
-                    {row.donations}
+                    {
+                      donations.filter((item) => item.userId === user._id)
+                        .length
+                    }
                   </TableCell>
                   <TableCell align="right" style={{ width: 30 }}>
                     <img
-                      src={row.image}
+                      src={user.image ? user.image : avatar}
                       alt="user"
                       style={{ width: 50, height: 50, borderRadius: 25 }}
                     />
                   </TableCell>
                   <TableCell align="right" style={{ width: 40 }}>
                     <Tooltip title="Delete">
-                      <IconButton>
+                      <IconButton
+                        onClick={() => onRemoveUser({ userId: user._id })}
+                      >
                         <DeleteIcon />
                       </IconButton>
                     </Tooltip>
-                    <Tooltip title="Change Role">
-                      <IconButton>
-                        <ManageAccountsIcon />
-                      </IconButton>
-                    </Tooltip>
+                    {user.userType === "Manager" ? (
+                      <Tooltip title="Demote">
+                        <IconButton
+                          onClick={() => onDemoteUser({ userId: user._id })}
+                        >
+                          <ManageAccountsIcon />
+                        </IconButton>
+                      </Tooltip>
+                    ) : (
+                      <Tooltip title="Promote">
+                        <IconButton
+                          onClick={() => onPromoteUser({ userId: user._id })}
+                        >
+                          <ManageAccountsIcon />
+                        </IconButton>
+                      </Tooltip>
+                    )}
                   </TableCell>
                 </TableRow>
               ))}
@@ -123,12 +144,22 @@ const User = (props) => {
   );
 };
 
-User.propTypes = {};
+User.propTypes = {
+  users: PropTypes.array.isRequired,
+  donations: PropTypes.array.isRequired,
+};
 
-User.defaultProps = {};
+const mapStateToProps = ({ auth, donation }) => ({
+  users: auth.users,
+  donations: donation.donations,
+});
 
-const mapStateToProps = ({ auth }) => ({});
-
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  onGetUsers: () => dispatch(getUsers()),
+  onGetDonations: () => dispatch(getDonations()),
+  onRemoveUser: (payload) => dispatch(removeUser(payload)),
+  onPromoteUser: (payload) => dispatch(promoteUser(payload)),
+  onDemoteUser: (payload) => dispatch(demoteUser(payload)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);

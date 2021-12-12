@@ -95,10 +95,12 @@ const Orders = (props) => {
 Orders.propTypes = {
   handleLogout: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
+  orders: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = ({ auth, ui }) => ({
+const mapStateToProps = ({ auth, order }) => ({
   user: auth.user,
+  orders: order.orders,
 });
 
 const mapDispatchToProps = (dispatch) => ({});

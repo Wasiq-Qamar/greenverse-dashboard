@@ -17,6 +17,16 @@ import Orders from "../../components/Orders";
 import "./Home.css";
 
 const Home = (props) => {
+  const { isLogin } = props;
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!isLogin) {
+      history.push("/login");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLogin]);
+
   return (
     <div id="home-container" className="col-12 ">
       <div className="col-6">
@@ -32,11 +42,15 @@ const Home = (props) => {
   );
 };
 
-Home.propTypes = {};
+Home.propTypes = {
+  isLogin: PropTypes.bool.isRequired,
+};
 
 Home.defaultProps = {};
 
-const mapStateToProps = ({ auth }) => ({});
+const mapStateToProps = ({ auth }) => ({
+  isLogin: auth.isLogin,
+});
 
 const mapDispatchToProps = (dispatch) => ({});
 

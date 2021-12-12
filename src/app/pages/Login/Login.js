@@ -24,7 +24,7 @@ const Login = (props) => {
   } = props;
   const history = useHistory();
 
-  const [state, setState] = useState({ username: "", password: "" });
+  const [state, setState] = useState({ email: "", password: "" });
 
   useEffect(() => {
     if (authError) {
@@ -88,9 +88,9 @@ const Login = (props) => {
                       <div className="my-15px">
                         <input
                           type="text"
-                          placeholder="User Name"
-                          name="username"
-                          value={getInputValue("username")}
+                          placeholder="Email"
+                          name="email"
+                          value={getInputValue("email")}
                           onChange={onChangeInput}
                           className="form-control"
                         />
@@ -110,7 +110,7 @@ const Login = (props) => {
                         <button
                           type="submit"
                           className="btn mb-20px"
-                          disabled={!state.username || !state.password}
+                          disabled={!state.email || !state.password}
                         >
                           <MdVerifiedUser className="mr-3px" />
                           Login

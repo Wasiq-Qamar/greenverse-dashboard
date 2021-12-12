@@ -4,6 +4,8 @@ import {
   LOGIN,
   LOGOUT,
   REMOVE_AUTH_ALERT,
+  SET_USERS,
+  REMOVE_USER,
 } from "./actionTypes";
 
 const INIT_STATE = {
@@ -11,6 +13,7 @@ const INIT_STATE = {
   authError: "",
   authSuccess: "",
   user: {},
+  users: [],
 };
 
 const Auth = (state = INIT_STATE, action) => {
@@ -22,12 +25,9 @@ const Auth = (state = INIT_STATE, action) => {
         user: action.payload,
       };
     case LOGOUT:
-      console.log("LOGOUT");
       return {
         ...state,
         isLogin: false,
-        authError: "",
-        authSuccess: "",
       };
     case AUTH_SUCCESS:
       return {
@@ -44,6 +44,17 @@ const Auth = (state = INIT_STATE, action) => {
         ...state,
         authSuccess: "",
         authError: "",
+      };
+    case SET_USERS:
+      return {
+        ...state,
+        users: action.payload,
+      };
+    case REMOVE_USER:
+      let usersArr = state.users.filter((item) => item._id !== action.payload);
+      return {
+        ...state,
+        users: usersArr,
       };
     default:
       return state;

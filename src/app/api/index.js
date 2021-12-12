@@ -2,7 +2,7 @@ import axios from "axios";
 import { getSessionCookie } from "../../utility/session";
 
 const instance = axios.create({
-  // baseURL: "http://139.59.231.145:8000", //for local development
+  baseURL: "https://greenverse-server.herokuapp.com", //for local development
   // baseURL: "", // for generating build
 });
 

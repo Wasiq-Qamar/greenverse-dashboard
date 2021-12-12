@@ -2,28 +2,33 @@ import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 import Headroom from "react-headroom";
 import { AiOutlinePoweroff } from "react-icons/ai";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { connect } from "react-redux";
-import { useLocation } from "react-router-dom";
-import GrenverseLogo from "../../../assets/media/logo_transparent.png";
 import dashboardWhite from "../../../assets/media/dashboardWhite.png";
-import hourglass from "../../../assets/media/hourglass.png";
 import decreasing from "../../../assets/media/decreasing.png";
-import question from "../../../assets/media/question.png";
 import graph from "../../../assets/media/graph.png";
+import hourglass from "../../../assets/media/hourglass.png";
+import question from "../../../assets/media/question.png";
 import { logoutUser } from "../../store/auth/actions";
-import { setLoading } from "../../store/gateway/actions";
+import { getDonations } from "../../store/donation/actions";
+import { getOrders } from "../../store/order/actions";
+import { getTasks } from "../../store/task/actions";
 import "./Header.css";
 
 const Header = (props) => {
-  const { handleLogout } = props;
-  const location = useLocation();
+  const {
+    handleLogout,
+    onGetDonations,
+    onGetTasks,
+    onGetOrders,
+    orders,
+    tasks,
+    donations,
+  } = props;
 
   useEffect(() => {
-    if (location.pathname === "/app/manage") {
-      setLoading(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    onGetTasks();
+    onGetDonations();
+    onGetOrders();
   }, []);
 
   return (
@@ -64,7 +69,9 @@ const Header = (props) => {
             Total Tasks
           </p>
           <div>
-            <p style={{ fontSize: 30, margin: 0, padding: 0 }}>56</p>
+            <p style={{ fontSize: 30, margin: 0, padding: 0 }}>
+              {tasks ? tasks.length : "N/A"}
+            </p>
             <span
               style={{
                 width: 40,
@@ -91,7 +98,9 @@ const Header = (props) => {
             Total Donations
           </p>
           <div>
-            <p style={{ fontSize: 30, margin: 0, padding: 0 }}>5</p>
+            <p style={{ fontSize: 30, margin: 0, padding: 0 }}>
+              {donations ? donations.length : "N/A"}
+            </p>
             <span
               style={{
                 width: 40,
@@ -114,7 +123,9 @@ const Header = (props) => {
             Ongoing Tasks
           </p>
           <div>
-            <p style={{ fontSize: 30, margin: 0, padding: 0 }}>8</p>
+            <p style={{ fontSize: 30, margin: 0, padding: 0 }}>
+              {tasks ? tasks.length : "N/A"}
+            </p>
             <span
               style={{
                 width: 40,
@@ -141,7 +152,9 @@ const Header = (props) => {
             Greenstore Orders
           </p>
           <div>
-            <p style={{ fontSize: 30, margin: 0, padding: 0 }}>96</p>
+            <p style={{ fontSize: 30, margin: 0, padding: 0 }}>
+              {orders ? orders.length : "N/A"}
+            </p>
             <span
               style={{
                 width: 40,
@@ -166,14 +179,23 @@ const Header = (props) => {
 Header.propTypes = {
   handleLogout: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
+  orders: PropTypes.array.isRequired,
+  donations: PropTypes.array.isRequired,
+  tasks: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = ({ auth, ui }) => ({
+const mapStateToProps = ({ auth, order, task, donation }) => ({
   user: auth.user,
+  orders: order.orders,
+  donations: donation.donations,
+  tasks: task.tasks,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   handleLogout: () => dispatch(logoutUser()),
+  onGetDonations: () => dispatch(getDonations()),
+  onGetOrders: () => dispatch(getOrders()),
+  onGetTasks: () => dispatch(getTasks()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Header));

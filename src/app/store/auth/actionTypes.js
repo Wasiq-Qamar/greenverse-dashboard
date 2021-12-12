@@ -4,3 +4,7 @@ export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const AUTH_ERROR = "AUTH_ERROR";
 export const REMOVE_AUTH_ALERT = "REMOVE_AUTH_ALERT";
 export const UPDATE_PASSWORD = "UPDATE_PASSWORD";
+export const SET_USERS = "SET_USERS";
+export const REMOVE_USER = "REMOVE_USER";
+export const PROMOTE_USER = "PROMOTE_USER";
+export const DEMOTE_USER = "DEMOTE_USER";

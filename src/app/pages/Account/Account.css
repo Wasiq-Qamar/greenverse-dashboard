@@ -48,7 +48,7 @@
 #accounts-container {
   width: calc (100vw - 65px);
   height: fit-content;
-  margin-left: 65px;
-  padding: 20px 2vh 2vh 10vh;
+  margin-left: 3px;
+  padding: 10px 2vh 2vh 10vh;
   background-color: whitesmoke;
 }
